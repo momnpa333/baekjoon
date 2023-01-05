@@ -1,0 +1,1 @@
+strings.swap(i, i+1)
