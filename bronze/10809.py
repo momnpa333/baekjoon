@@ -12,4 +12,4 @@ for i in ary:
         solv[ord(i)-97]=cnt
     cnt+=1
 for i in solv:
-    print(i)
+    print(i,end=' ')
