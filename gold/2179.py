@@ -40,6 +40,5 @@ for i in range(len(words)):
         solv[words[i][0]]=[words[i]]
 sorting=sorted(answer.items(), key=lambda x:(-x[1][0][0],x[1][1]))
 
-print(sorting)
 print(sorting[0][0])
 print(sorting[0][1][0][1])

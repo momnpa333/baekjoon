@@ -5,5 +5,5 @@ def solution(phone_number):
     answer='*'*numberlen
     answer=answer+phone_number[-4:]
     return answer
-    
+        
 print(solution(phone_number))

@@ -8,7 +8,6 @@ while True:
     if not specie:
         break
     else:species.append(specie)
-print(Counter(species))
 
 for (key,value) in sorted(dict(Counter(species)).items()):
     value = value/len(species)*100

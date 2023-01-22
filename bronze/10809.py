@@ -2,7 +2,6 @@ import sys
 input = sys.stdin.readline
 
 exam=input().strip().lower()
-print(exam)
 
 solv=[-1]*26
 cnt=0
