@@ -37,7 +37,7 @@ for i in range(R):
         answer[ord(alpa[i][j])-65]+=width*height
         width=0
         height=0
-print(*answer,end='\n')
+print(*answer)
 
 
 
