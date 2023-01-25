@@ -15,10 +15,12 @@ tmp=[]
 #N개로 첫 힙 구현
 answer=0
 for j in range(N):
-    tmp.append(queAray[j].pop())
+    tmp.append(queAray[j][len(queAray)-1])
+    heapq.heappush(heap,-1*queAray[j].pop())
 for i in range(N):
-    idx=tmp.index(max(tmp))
+    if(i==N-1):
+        print(-1*heapq.heappop(heap))
+        break
+    idx=tmp.index(-1*heapq.heappop(heap))
     tmp[idx]=queAray[idx].pop()
-    if(i==N-2):
-        answer=tmp[idx]
-print(answer)
+    heapq.heappush(heap,-1*tmp[idx])
