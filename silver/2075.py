@@ -5,7 +5,8 @@ from collections import deque
 heap=[]
 N=int(input())
 #배열 전치하기
-ary=[[0 for _ in range(N)]for _ in range(N)]
+ary=[[0 for _ in range(
+    N)]for _ in range(N)]
 for i in range(N):
     tmp=list(map(int,input().split()))
     for k in range(N):
