@@ -1,41 +1,29 @@
 import sys
-input=sys.stdin.readline
-N=int(input())
-dp=[0,0]
-answer=[0,0]
-
-for i in range(2,N+1):
-    if i%3==0 and i%2==0:
-        dp.append(min(dp[i//3]+1,dp[i//2]+1,dp[i-1]+1))
-        if min(dp[i//3]+1,dp[i//2]+1,dp[i-1]+1)==dp[i//3]+1:
-            answer.append(3)
-        elif min(dp[i//3]+1,dp[i//2]+1,dp[i-1]+1)==dp[i//2]+1:
-            answer.append(2) 
-        else:
-            answer.append(1)
-    elif i%2==0:
-        dp.append(min(dp[i//2]+1,dp[i-1]+1))
-        if min(dp[i//2]+1,dp[i-1]+1)==dp[i//2]+1:
-            answer.append(2) 
-        else:
-            answer.append(1)
-    elif i%3==0:
-        dp.append(min(dp[i//3]+1,dp[i-1]+1))
-        if min(dp[i//3]+1,dp[i-1]+1)==dp[i//3]+1:
-            answer.append(3) 
-        else:
-            answer.append(1)
-    else:
-        dp.append(dp[i-1]+1)
-        answer.append(1)
-print(dp[N])
-while(N!=1):
-    print(N,end=" ")
-    if answer[N]==1:
+input = sys.stdin.readline
+sys.setrecursionlimit(10**5)
+F,S,G,U,D=map(int,input().split())
+queue=[]
+check=[0 for _ in range(F+1)]
+queue.append(S)
+depth=1
+answer=-1
+while len(queue)>0:
+    N=len(queue)
+    while N>0:
+        now=queue.pop(0)
+        if now+U==G or now-D==G:
+            print(depth)
+            answer=0
+            break
+        if now+U<=F and check[now+U]==0:
+            check[now+U]=1
+            queue.append(now+U)
+        if now+D>0 and check[now+D]==0:
+            check[now-D]=1
+            queue.append(now-D)
         N-=1
-    elif answer[N]==2:
-        N//=2
-    elif answer[N]==3:
-        N//=3
-print(1)
+    depth+=1
+if answer==-1:
+    print('use the stairs')
 
+ 
