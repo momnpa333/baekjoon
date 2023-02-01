@@ -33,16 +33,17 @@ while True:
                     check[i+tmp]=1
                     queue.append(u[1])
             
-            #뱀에 안 만나고 간적없는곳 큐에 넣기
+            #뱀 큐에 넣기
             for d in down:
-                if (i+tmp)!=d[0] and check[i+tmp]==0:
+                if (i+tmp)==d[0] and check[i+tmp]==0:
                     if i+tmp==100:
                         check[i+tmp]
                         print(count+1)
                         flag = 1
                         break
                     check[i+tmp]=1
-                    queue.append(i+tmp)
+                    check[d[1]]=1
+                    queue.append(d[1])
             else:
                 if i+tmp==100:
                     flag = 1
