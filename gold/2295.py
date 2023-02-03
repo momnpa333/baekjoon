@@ -26,22 +26,22 @@ while rear>0:
         elif numary[left]+numary[right]+numary[mid]<numary[rear]:
             front=mid
             mid=(mid+back+1)//2
-        if front==back:
+        if front==back or mid==back or mid==front:
             if numary[left]+numary[right]+numary[mid]==numary[rear]:
                 print(numary[rear])
                 flag=1
                 break
             else:
-                if mid<(left+right//2):
-                    right-=1
+                if mid>(left+right)//2:
+                    left+=1
                     front=left
                     back=right
                     mid=(left+right)//2
                 else:
-                    left+=1
+                    right-=1
                     front=left
                     back=right
-                    mid=(left+right+1)//2
+                    mid=(left+right)//2
        
         if left==right:
             if numary[left]+numary[right]+numary[mid]==numary[rear]:

@@ -1,24 +1,16 @@
-from itertools import combinations
 import sys
-input = sys.stdin.readline
+input=sys.stdin.readline
 
 N=int(input())
-straw=sorted([int(input()) for _ in range(N)],key=lambda x:-x)
 
-solv=0
-flag=0
-for i in range(N-2):
-    for j in range(i+1,N-1):
-        for k in range(j+1,N):
-            if straw[j]+straw[k]>straw[i]:
-                solv=straw[i]+straw[j]+straw[k]
-                flag=1
-                break
-        if flag==1:
-            break
-    if flag==1:
-        break
-else:
-    solv=-1
+edges=[]
+for i in range(N+1):
+    edges.append([])
 
-print(solv)
+for _ in range(N-1):
+    i,j=map(int,input().split())
+    edges[i].append(j)
+    edges[j].append(i)
+
+for i in range(2,N+1):
+    print(edges[i][0])
