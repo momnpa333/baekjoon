@@ -4,8 +4,6 @@ N,T=map(int,input().split())
 
 node=[[]for _ in range(N+1)]
 want=[]
-print(node)
-
 for i in range(N-1):
     A,B,L=map(int,input().split())
     node[A].append([B,L])
