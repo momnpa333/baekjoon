@@ -28,6 +28,7 @@ while rear>0:
             mid=(mid+back+1)//2
         if front==back or mid==back or mid==front:
             if numary[left]+numary[right]+numary[mid]==numary[rear]:
+       
                 print(numary[rear])
                 flag=1
                 break

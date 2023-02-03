@@ -1,16 +1,32 @@
 import sys
 input=sys.stdin.readline
 
-N=int(input())
+n=int(input())
+numary=list(map(int,input().split()))
+solv=numary[0]
+prev=0
 
-edges=[]
-for i in range(N+1):
-    edges.append([])
+for numa in numary:
+    if numa>0:
+        flag=1
+        break
+else:
+    flag=0
 
-for _ in range(N-1):
-    i,j=map(int,input().split())
-    edges[i].append(j)
-    edges[j].append(i)
-
-for i in range(2,N+1):
-    print(edges[i][0])
+if flag==1:
+    for num in numary:
+        if num+prev>=0:
+            if prev>num+prev:
+                if solv<prev:
+                    solv=prev
+            prev=num+prev
+        else:
+            if solv<prev:
+                solv=prev
+                prev=0
+    else:
+        if solv<prev:
+            solv=prev
+    print(solv)
+else:
+    print(max(numary))
