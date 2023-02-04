@@ -32,5 +32,8 @@ def bfs():
             T-=1
 dq.appendleft(N)
 check[N]=1
-print(bfs())
+if N==K:
+    print(0)
+else:
+    print(bfs())
 
