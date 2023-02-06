@@ -19,5 +19,4 @@ for i in numary:
     for j in numary:
         if (i-j) in sumary:
             ans[i]=(i,j,i-j)
-answer=sorted(list(ans.keys()))
-print(answer[len(answer)-1])
+print(max(list(ans.keys())))
