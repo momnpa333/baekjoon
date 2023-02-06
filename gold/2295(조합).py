@@ -31,11 +31,10 @@ while rear>0:
             flag=1
             break
         else:
-            if mid>(left+right)//2:
+            if mid>(left+right+1)//2:
                 left+=1
             else:
                 right-=1
-
     if flag==1:
         break
     rear-=1
