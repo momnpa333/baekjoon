@@ -8,8 +8,7 @@ liquid=list(map(int,input().split()))
 
 left=0
 right=n-1
-answer=200000000100
-ansleft=0
+answer=2000000001
 ansright=0
 while left<right:
     if(liquid[left]+liquid[right])>0:
