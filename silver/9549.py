@@ -2,23 +2,34 @@ import sys
 from collections import Counter
 
 input=sys.stdin.readline
-
 T=int(input())
 
 while T>0:
+    originArr=[0]*26
     change=input().strip()
     origin=input().strip()
-    changeNum=len(change)
-    strNum=len(origin)
-    tmp=Counter(origin)
-    print(tmp)
-    c=0
-    while c<=(changeNum-strNum):
-        print(c)
-        tmp1=sum((Counter(change[c:c+strNum])-tmp).values())
-        if tmp1==0:
-            print("YES")
+    
+    for o in origin:
+        originArr[ord(o)-ord('a')]+=1
+    
+    for i in range(len(origin)):
+        originArr[ord(change[i])-ord('a')]-=1
+    for i in originArr:
+        if i!=0:
             break
-        c+=tmp1
-    else:print("NO")
-    T-=1    
+    else:
+        print("YES")
+        T-=1
+        continue
+    for i in range(1,len(change)-len(origin)+1):
+        originArr[ord(change[i-1])-ord('a')]+=1
+        originArr[ord(change[i+len(origin)-1])-ord('a')]-=1
+        for i in originArr:
+            if i!=0:
+                break
+        else:
+            print("YES")
+            break    
+    else:
+        print("NO")
+    T-=1 
