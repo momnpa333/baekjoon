@@ -11,11 +11,14 @@ while T>0:
     changeNum=len(change)
     strNum=len(origin)
     tmp=Counter(origin)
-    
-    for i in range(0,changeNum-strNum+1):
-        if Counter(change[i:i+strNum])==tmp:
+    print(tmp)
+    c=0
+    while c<=(changeNum-strNum):
+        print(c)
+        tmp1=sum((Counter(change[c:c+strNum])-tmp).values())
+        if tmp1==0:
             print("YES")
             break
-    else:
-        print("NO")
+        c+=tmp1
+    else:print("NO")
     T-=1    
