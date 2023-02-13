@@ -23,24 +23,24 @@ flag=0
 for cmd in cmds:
     if cmd[1]=='L':
         for i in range(cmd[2]):
-            if robot[cmd[0]][1]=='N':
-                robot[cmd[0]][1]='W'
-            elif robot[cmd[0]][1]=='W':
-                robot[cmd[0]][1]='S'
-            elif robot[cmd[0]][1]=='S':
-                robot[cmd[0]][1]='E'
+            if robot[cmd[0]][2]=='N':
+                robot[cmd[0]][2]='W'
+            elif robot[cmd[0]][2]=='W':
+                robot[cmd[0]][2]='S'
+            elif robot[cmd[0]][2]=='S':
+                robot[cmd[0]][2]='E'
             else:
-                robot[cmd[0]][1]='N'
+                robot[cmd[0]][2]='N'
     elif cmd[1]=='R':
         for i in range(cmd[2]):
-            if robot[cmd[0]][1]=='N':
-                robot[cmd[0]][1]='E'
-            elif robot[cmd[0]][1]=='E':
-                robot[cmd[0]][1]='S'
-            elif robot[cmd[0]][1]=='S':
-                robot[cmd[0]][1]='W'
+            if robot[cmd[0]][2]=='N':
+                robot[cmd[0]][2]='E'
+            elif robot[cmd[0]][2]=='E':
+                robot[cmd[0]][2]='S'
+            elif robot[cmd[0]][2]=='S':
+                robot[cmd[0]][2]='W'
             else:
-                robot[cmd[0]][1]='N'
+                robot[cmd[0]][2]='N'
     elif cmd[1]=='F':
         for i in range(cmd[2]):
             robot[cmd[0]][0]+=dir[robot[cmd[0]][2]][0]
@@ -53,13 +53,15 @@ for cmd in cmds:
             #기계 충돌
             for i in range(1,len(robot)):
                 if robot[i][0]==robot[cmd[0]][0] and robot[i][1]==robot[cmd[0]][1] and i!=cmd[0]:
-                    print("Robot",cmd[0],"crashes into the robot",i)
+                    print("Robot",cmd[0],"crashes into robot",i)
                     flag=1
                     break
             if flag==1:
                 break
     if flag==1:
         break
+else:
+    print("OK")
 
 
 
