@@ -27,6 +27,7 @@ def solution(n, computers):
                 parent[j]=min(parent[i],parent[j])
     answer=(len(Counter(parent)))
             
+    test
             
         
     return answer
