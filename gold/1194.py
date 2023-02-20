@@ -4,7 +4,7 @@ sys.setrecursionlimit(10**6)
 input=sys.stdin.readline
 
 N,M=map(int,input().split())
-
+start=[]
 maze=[]
 for _ in range(N):
     maze.append(list(map(str,input().strip())))
@@ -13,6 +13,7 @@ for i in range(N):
         if maze[i][j]=='0':
             start=[i,j,0]
             break
+
 check=[[-1]*M for i in range(N)]
 dq=deque([])
 dq.append(start)
