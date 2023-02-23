@@ -8,7 +8,9 @@ def bfs():
     solv=0
     dq=deque([])
     dq.append(N)
-    check=[-1]*100001
+    check=[0]*100001
+    check2=[0]*100001
+    check[N]=1
     count=0
     while dq:
         count+=1
@@ -18,15 +20,16 @@ def bfs():
             T-=1
             for i in [tmp-1,tmp+1,tmp*2]:
                 if 0<=i<=100000:
-                    if check[i]==-1 or check[i]==count:
+                    if check[i]==0:
                         if i==K:
                             solv+=1
+                        check2[i]=count
                         dq.append(i)
-                    check[i]=count
-        
+                    if check2[i]==count:
+                        check[i]+=check[tmp]
         if solv!=0:
             break
-    print(count,solv)
+    print(count,check[K])
 bfs()
 
 
