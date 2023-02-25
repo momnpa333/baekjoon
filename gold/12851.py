@@ -2,7 +2,9 @@ import sys
 from collections import deque
 
 N,K=map(int,input().split())
-
+if N==K:
+    print(0,1)
+    exit(0)
 check=set()
 def bfs():
     solv=0

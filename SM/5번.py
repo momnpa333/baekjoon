@@ -11,3 +11,4 @@ for i in range(N):
     pivot2=len(num)-1-pivot
     num.sort()
     print(num[pivot],num[pivot2])
+

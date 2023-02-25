@@ -26,7 +26,6 @@ edges.sort(key=lambda x:x[2])
 
 res=0
 last=0
-print(edges)
 for edge in edges:
     a,b,cost=edge
     if findparent(a)!=findparent(b):

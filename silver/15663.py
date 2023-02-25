@@ -4,8 +4,9 @@ from itertools import permutations
 N,M=map(int,input().split())
 
 numary=sorted(list(map(int,input().split())))
-numset=set(numary)
-numary=sorted(list(numset))
+check=set()
 
 for i in permutations(numary,M):
-    print(*i)
+    if i not in check:
+        print(*i)
+        check.add(i)
