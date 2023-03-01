@@ -3,8 +3,8 @@ import heapq
 
 input=sys.stdin.readline
 INF=int(1e9)
-N,M,X=map(int,input().split())
-
+N,M=map(int,input().split())
+X=int(input())
 visited=[False]*(N+1)
 distance=[INF]*(N+1)
 graph=[[]for _ in range(N+1)]
@@ -29,18 +29,9 @@ def dijkstra(start):
                 heapq.heappush(q,(cost,next[0]))
     
 
-solv=[0]*(N+1)
 dijkstra(X)
 for i in range(1,N+1):
-    solv[i]=distance[i]
-distance=[INF]*(N+1)
-visited=[False]*(N+1)
-
-for i in range(1,N+1):
-    if i==X:
-        continue
-    distance=[INF]*(N+1)
-    visited=[False]*(N+1)
-    dijkstra(i)
-    solv[i]+=distance[X]
-print(max(solv))
+    if distance[i] ==INF:
+        print("INF")
+    else :
+        print(distance[i])
