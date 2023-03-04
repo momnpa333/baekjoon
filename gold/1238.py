@@ -1,4 +1,5 @@
 import sys
+
 input=sys.stdin.readline
 INF=int(1e9)
 N,M,X=map(int,input().split())
@@ -49,4 +50,3 @@ for i in range(1,N+1):
     dijkstra(i)
     solv[i]+=distance[X]
 print(max(solv))
-
