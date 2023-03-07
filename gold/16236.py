@@ -42,7 +42,6 @@ def bfs(r,c):
                         dq.append([R,C])
         if flag==1:
             choice.sort(key=lambda x:(x[0],x[1]))
-            print(choice)
             R=choice[0][0];C=choice[0][1]
             sea[R][C]=0
             lev[1]+=1
