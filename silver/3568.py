@@ -23,4 +23,4 @@ for var in ary:
     alp=" "+alp[::-1]
     print(mod+tmp+alp+";")
 
-    
+    #?
