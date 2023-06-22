@@ -1,8 +1,15 @@
-totalPrice=int(input('총 가격(원 가격) 입력>>'))
+import numpy as np
+import matplotlib.pyplot as plt
 
-case1=(10000<=totalPrice<20000)*(0.99)
-case2=(20000<=totalPrice<40000)*(0.98)
-case3=(totalPrice>=40000)*0.96
+x=np.linspace(-np.pi*2,np.pi*2,720)
+cos,sin=np.cos(x),np.sin(x)
 
-print('원 가격:',totalPrice,' 할인된 가격:',totalPrice*(case1+case2+case3))
-print('할인율: ',round(1-(case1+case2+case3),2),' 할인액:',round(totalPrice*(1-(case1+case2+case3)),2))
+plt.plot(x,sin,ls=':',label='sin')
+plt.plot(x,cos,ls='--',label='cos')
+
+plt.title("Graph of sin cos")
+plt.xlabel("radians")
+plt.ylabel("value")
+plt.grid()
+plt.legend()
+plt.show()

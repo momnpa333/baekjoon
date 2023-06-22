@@ -36,7 +36,7 @@ for i in ary:
     cmd+="0"
     cmd+=(format(int(i[1]),'b').rjust(3,"0"))
     cmd+=(format(int(i[2]),'b').rjust(3,"0"))
-    print(i[3])
+    #print(i[3])
     if cmd[4]=="0":
         cmd+=(format(int(i[3]),'b').rjust(3,"0"))
         cmd+="0"

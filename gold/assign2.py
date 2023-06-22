@@ -1,12 +1,16 @@
-origin=input('콤말 구분된 단어 3개 입력 >>')
-change=origin.replace(' ','')
-word1,word2,word3=change.split(',')
-reverse=word1[::-1]
-isReturn=reverse==word1
-print('단어: {}, 역순: {}, 회문: {}'.format(word1,reverse,isReturn))
-reverse=word2[::-1]
-isReturn=reverse==word2
-print('단어: {}, 역순: {}, 회문: {}'.format(word2,reverse,isReturn))
-reverse=word3[::-1]
-isReturn=reverse==word3
-print('단어: {}, 역순: {}, 회문: {}'.format(word3,reverse,isReturn))
+import numpy as np
+answer=[]
+a=np.arange(0,16).reshape(4,4)
+b=a[:,1]
+c=a[2,1:4]
+d=a[:2,:2]
+e=a[1:3,1:3]
+f=a[:2,:3].flatten()
+g=a[2:4,:4].flatten()
+h=a[1:4:2,1:4].flatten()
+
+answer.append(b);answer.append(c);answer.append(d);answer.append(e);answer.append(f);answer.append(g);answer.append(h)
+
+for i in range(7):
+    print('%c ='%(i+ord('b')),end="")
+    print(answer[i])
