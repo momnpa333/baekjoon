@@ -23,3 +23,4 @@ def solution(m, n, startX, startY, balls):
             answer.append(min)
     print(answer)
     return answer
+#test
