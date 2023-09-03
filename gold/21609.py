@@ -43,6 +43,8 @@ def findBlock():
                     targetBlock=block
                     targetScore=score
                 elif targetScore==score and targetBlock!=[]:
+                    delRainbow(targetBlock)
+                    delRainbow(block)
                     if targetBlock[0][0]<block[0][0]:
                         targetBlock=block
                         targetScore=score
@@ -59,6 +61,12 @@ def removeBlock(block):
             if (i,j) in block:
                 matrix[i][j]='.'
     answer+=len(block)**2
+
+def delRainbow(mat):
+    while True:
+        if matrix[mat[0][0]][mat[0][1]]==0:
+            mat.append(mat.pop(0))
+        else: break
 
 
 def rotateBlock():
