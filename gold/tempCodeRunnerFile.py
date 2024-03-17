@@ -1,6 +1,5 @@
-     if seatLikeAry[i][j]>maxLike:
-                    maxLike=seatLikeAry[i][j]
-                    maxLikeSeat=[]
-                    maxLikeSeat.append((i,j))
-                elif seatLikeAry[i][j]==maxLike:
-                    maxLikeSeat.append((i,j))
+for v in dijkstra(graph, start,V):
+    if v==int(1e9):
+        print('INF')
+    else:
+        print(v)

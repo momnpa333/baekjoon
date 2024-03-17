@@ -13,7 +13,7 @@ graph=[[]for _ in range(N+1)]
 for i in range(M):
     s,e,c=map(int,input().split())
     graph[s].append((e,c))
-
+print(graph)
 def dijkstra(start):
     q=[]
     heapq.heappush(q,(0,start))
@@ -35,3 +35,4 @@ for i in range(1,N+1):
         print("INF")
     else :
         print(distance[i])
+    
