@@ -1,47 +1,64 @@
-N=int(input())
-k=int(input())
+from itertools import combinations
+import copy
+from collections import deque
 
-def makeseq(n):
-    seqary=[]
-    isum=0
-    for i in range(1,n+1):
-        isum+=i
-        col=i
-        row=1
-        seqary.append([row,col,isum])
-    
-    for i in range(n-1,0,-1):
-        isum+=i
-        col=n
-        row=n-i+1
-        seqary.append([row,col,isum])
-    return seqary
+N,M=map(int,input().split(' '))
 
-def makesub(num,N):
-    subary=[]
-    if num<=N:
-        for i in range(1,num+1):
-            subary.append((num+1-i)*i)
-    else:
-        row=num-N
-        num=2*N-num
-        for i in range(1,num+1):
-            subary.append((row+i)*(N-i+1))
-    return subary
+maze=[list(map(int,input().split(' '))) for _ in range(N)]
 
-seqary=makeseq(N)
+zeros=[]
 
-index=0
-for item in seqary:
-    index+=1
-    if k<=item[2]:
-        break
-subary=makesub(index,N)
-# print(subary)
-subary=sorted(subary)
-# print(k-seqary[index-2][2])
-print(subary[k-seqary[index-1][2]-1])
+def bfs(newmaze,check,r,c):
+    N=len(newmaze); M=len(newmaze[0])
+    dq=deque([])
+    if check[r][c]==False:
+        dq.append((r,c))
+        check[r][c] = True
 
+    while dq:
+        for _ in range(len(dq)):
+            r,c=dq.popleft()
+            for addr,addc in ((0,1),(1,0),(0,-1),(-1,0)):
+                newr=addr+r; newc=addc+c
+                if 0<=newr<N and 0<=newc<M and check[newr][newc]==False:
+                    if newmaze[newr][newc]==0 or newmaze[newr][newc]==2:
+                        dq.append((newr,newc))
+                        newmaze[newr][newc]=2
+                        check[newr][newc]=True
+
+
+def killer(newmaze):
+    check=[[False]*len(newmaze[0]) for _ in range(len(newmaze))]
+    for r in range(len(newmaze)):
+        for c in range(len(newmaze[0])):
+            if newmaze[r][c]==2:
+                bfs(newmaze,check,r,c)
+
+
+def getanswer(walls):
+    ret=0
+    newmaze=copy.deepcopy(maze)
+    for wall in walls:
+        newmaze[wall[0]][wall[1]]=1
+
+    killer(newmaze)
+    for row in newmaze:
+        for item in row:
+            if item == 0:
+                ret+=1
+    return ret
+
+answers=[]
+
+for r in range(N):
+    for c in range(M):
+        if maze[r][c] == 0:
+            zeros.append((r,c))
+
+for walls in combinations(zeros,3):
+    answers.append(getanswer(walls))
+print(max(answers))
+# getanswer(((0,1),(0,2),(0,3)))
 
 
 
