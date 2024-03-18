@@ -37,6 +37,7 @@ for item in seqary:
     if k<=item[2]:
         break
 subary=makesub(index,N)
+print(index)
 # print(subary)
 subary=sorted(subary)
 # print(k-seqary[index-2][2])
