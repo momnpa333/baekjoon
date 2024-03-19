@@ -1,65 +1,63 @@
-from itertools import combinations
+import sys
+from collections import deque, defaultdict
 import copy
-from collections import deque
+input=sys.stdin.readline
 
-N,M=map(int,input().split(' '))
+N,M=map(int,input().split())
 
-maze=[list(map(int,input().split(' '))) for _ in range(N)]
+maze=[list(map(int,input().strip()))for _ in range(N)]
+answer=copy.deepcopy(maze)
+check=[[False]*M for _ in range(N)]
+cntdict=defaultdict(int)
 
-zeros=[]
-
-def bfs(newmaze,check,r,c):
-    N=len(newmaze); M=len(newmaze[0])
+def makesection(r,c,section_num,N,M):
     dq=deque([])
-    if check[r][c]==False:
-        dq.append((r,c))
-        check[r][c] = True
+    cnt=0
+    dq.append((r,c))
+    cnt+=1
 
+    maze[r][c]=str(section_num)
+    check[r][c]=True
     while dq:
         for _ in range(len(dq)):
-            r,c=dq.popleft()
+            curr,curc=dq.popleft()
             for addr,addc in ((0,1),(1,0),(0,-1),(-1,0)):
-                newr=addr+r; newc=addc+c
-                if 0<=newr<N and 0<=newc<M and check[newr][newc]==False:
-                    if newmaze[newr][newc]==0 or newmaze[newr][newc]==2:
-                        dq.append((newr,newc))
-                        newmaze[newr][newc]=2
-                        check[newr][newc]=True
+                R=addr+curr; C=addc+curc
+                if 0<=R<N and 0<=C<M and check[R][C]==False and maze[R][C]==0:
+                    dq.append((R,C))
+                    cnt+=1
+                    maze[R][C]=str(section_num)
+                    check[R][C]=True
+    cntdict[str(section_num)]=cnt
 
-
-def killer(newmaze):
-    check=[[False]*len(newmaze[0]) for _ in range(len(newmaze))]
-    for r in range(len(newmaze)):
-        for c in range(len(newmaze[0])):
-            if newmaze[r][c]==2:
-                bfs(newmaze,check,r,c)
-
-
-def getanswer(walls):
-    ret=0
-    newmaze=copy.deepcopy(maze)
-    for wall in walls:
-        newmaze[wall[0]][wall[1]]=1
-
-    killer(newmaze)
-    for row in newmaze:
-        for item in row:
-            if item == 0:
-                ret+=1
+def bomb(r,c):
+    ret=1
+    itemset=set()
+    for addr,addc in ((0,1),(1,0),(0,-1),(-1,0)):
+        R=r+addr;C=c+addc
+        if 0<=R<N and 0<=C<M:
+            if type(maze[R][C])==str:
+                itemset.add(maze[R][C])
+    for item in itemset:
+        ret+=cntdict[item]
     return ret
 
-answers=[]
+section_num=0
+for r in range(N):
+    for c in range(M):
+        if maze[r][c]==0:
+            section_num+=1
+            makesection(r,c,section_num,N,M)
 
 for r in range(N):
     for c in range(M):
-        if maze[r][c] == 0:
-            zeros.append((r,c))
+        if maze[r][c]==1:
+            answer[r][c]=bomb(r,c)
+answer1=[]
 
-for walls in combinations(zeros,3):
-    answers.append(getanswer(walls))
-print(max(answers))
-# getanswer(((0,1),(0,2),(0,3)))
-
-
-
-
+for ans in answer:
+    ret=''
+    for a in ans:
+        ret+=str(a)
+    answer1.append(ret)
+print(*answer1,sep='\n')
