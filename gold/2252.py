@@ -23,16 +23,18 @@ nowatches=findNoWatch()
 dq=deque([])
 for item in nowatches:
     dq.append(item)
+    answer.append(item)
 
 while dq:
+    # print(dq)
     for _ in range(len(dq)):
         target=dq.popleft()
-        answer.append(target)
         while graph[target]:
             watch=graph[target].pop()
             watchnum[watch]-=1
             if watchnum[watch]==0:
                 answer.append(watch)
+                dq.append(watch)
 print(*answer)
 
 

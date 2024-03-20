@@ -1,44 +1,102 @@
-import sys
-input = sys.stdin.readline
+from collections import deque
+import copy
 
-N,M=map(int,input().split())
+N,M=map(int,(input().split(' ')))
 
-office=[]
+answer=987654321
+room=[list(map(int,input().split(' '))) for _ in range(N)]
 
-cctv1=[0]
-cctv2=[0,2]
-cctv3=[0,3]
-cctv4=[0,2,3]
-cctv5=[0,1,2,3]
+# print(room)
 
-dir=[(0,1),(1,0),(0,-1),(-1,0)]
+def score(room):
+    cnt=0
+    for r in room:
+        for item in r:
+            if item==0:
+                cnt+=1
+    return cnt
 
-for i in range(N):
-    office.append(list(map(int,input().split())))
-#print(office)
+def watch(depth,lev,r,c,room):
+    global answer
+    if depth==len(cctvs)-1:
+        S=score(room)
+        if S<answer:
+            answer=S
+        return 
 
-def turn90(cctv):
-    for i in range(len(cctv)):
-        cctv[i] = (cctv[i]+1)%4
-
-def view(r,c,cctv,copy):
-    for cctvType in cctv:
-        for i in range(4):
-            curPosR=r
-            curPosC=c
-
-            cctvType=(cctvType+i)%4
+    if lev==1:
+        for dirr,dirc in ((0,1),(1,0),(0,-1),(-1,0)):
+            copyroom=copy.deepcopy(room)
+            curr=r;curc=c
             while True:
-                curPosR+=dir[cctvType][0]
-                curPosC+=dir[cctvType][1]
-
-                if 0<=curPosR<N and 0<=curPosC<M and copy[curPosR][curPosC] != 6:
-                    if copy[curPosR][curPosC] == 0:
-                        copy[curPosR][curPosC] = '#'
+                curr+=dirr;curc+=dirc
+                if 0<=curr<len(room) and 0<=curc<len(room[0]) and room[curr][curc]!=6:
+                    if room[curr][curc]==0:
+                        copyroom[curr][curc]='#'
                 else:
                     break
-view(2,2,cctv2,office)
-print(office)
+            watch(depth+1,cctvs[depth+1][0],cctvs[depth+1][1],cctvs[depth+1][2],copyroom)
+    if lev==2:
+        for dirs in (((0,1),(0,-1)),((-1,0),(1,0))):
+            copyroom=copy.deepcopy(room)
+            for dirr,dirc in dirs:
+                curr=r;curc=c
+                while True:
+                    curr+=dirr;curc+=dirc
+                    if 0<=curr<len(room) and 0<=curc<len(room[0]) and room[curr][curc]!=6:
+                        if room[curr][curc]==0:
+                            copyroom[curr][curc]='#'
+                    else:
+                        break
+            watch(depth+1,cctvs[depth+1][0],cctvs[depth+1][1],cctvs[depth+1][2],copyroom)
+    if lev==3:
+        for dirs in (((0,-1),(-1,0)),((0,-1),(1,0)),((1,0),(0,1)),((0,1),(1,0))):
+            copyroom=copy.deepcopy(room)
+            for dirr,dirc in dirs:
+                curr=r;curc=c
+                while True:
+                    curr+=dirr;curc+=dirc
+                    if 0<=curr<len(room) and 0<=curc<len(room[0]) and room[curr][curc]!=6:
+                        if room[curr][curc]==0:
+                            copyroom[curr][curc]='#'
+                    else:
+                        break
+            watch(depth+1,cctvs[depth+1][0],cctvs[depth+1][1],cctvs[depth+1][2],copyroom)
+    if lev==4:
+        for dirs in (((0,1),(-1,0),(0,-1)),((0,1),(1,0),(-1,0)),((1,0),(0,-1),(0,1)),((0,-1),(1,0),(-1,0))):
+            copyroom=copy.deepcopy(room)
+            for dirr,dirc in dirs:
+                curr=r;curc=c
+                while True:
+                    curr+=dirr;curc+=dirc
+                    if 0<=curr<len(room) and 0<=curc<len(room[0]) and room[curr][curc]!=6:
+                        if room[curr][curc]==0:
+                            copyroom[curr][curc]='#'
+                    else:
+                        break
+            watch(depth+1,cctvs[depth+1][0],cctvs[depth+1][1],cctvs[depth+1][2],copyroom)
+    if lev==5:
+        copyroom=copy.deepcopy(room)
+        for dirr,dirc in ((0,1),(1,0),(0,-1),(-1,0)):
+            curr=r;curc=c
+            while True:
+                curr+=dirr;curc+=dirc
+                if 0<=curr<len(room) and 0<=curc<len(room[0]) and room[curr][curc]!=6:
+                    if room[curr][curc]==0:
+                        copyroom[curr][curc]='#'
+                else:
+                    break
+        watch(depth+1,cctvs[depth+1][0],cctvs[depth+1][1],cctvs[depth+1][2],copyroom)
+    pass
 
-            
+
+cctvs=[]
+for r in range(N):
+    for c in range(M):
+        if room[r][c]!=0 and room[r][c]!=6:
+            cctvs.append((room[r][c],r,c))
+cctvs.append([-1,-1,-1])
+
+watch(0,cctvs[0][0],cctvs[0][1],cctvs[0][2],room)
+print(answer)
 
