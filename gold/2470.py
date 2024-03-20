@@ -8,7 +8,7 @@ left=0;right=len(drinkAry)-1
 acid=drinkAry[left]+drinkAry[-1]
 answer=[drinkAry[left],drinkAry[right]]
 while(left<right):
-    print(left,right,drinkAry[left]+drinkAry[right])
+    # print(left,right,drinkAry[left]+drinkAry[right])
     if abs(drinkAry[left]+drinkAry[right])<abs(acid):
         answer=[drinkAry[left],drinkAry[right]]
         acid=drinkAry[left]+drinkAry[right]

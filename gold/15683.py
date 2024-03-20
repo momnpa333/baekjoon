@@ -50,7 +50,7 @@ def watch(depth,lev,r,c,room):
                         break
             watch(depth+1,cctvs[depth+1][0],cctvs[depth+1][1],cctvs[depth+1][2],copyroom)
     if lev==3:
-        for dirs in (((0,-1),(-1,0)),((0,-1),(1,0)),((1,0),(0,1)),((0,1),(1,0))):
+        for dirs in (((0,-1),(-1,0)),((0,-1),(1,0)),((1,0),(0,1)),((0,1),(-1,0))):
             copyroom=copy.deepcopy(room)
             for dirr,dirc in dirs:
                 curr=r;curc=c

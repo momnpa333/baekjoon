@@ -64,75 +64,75 @@ while dq:
             if (addr,addc)==(1,0):
                 if redR>blueR:
                     tredR,tredC=moveball(addr,addc,redR,redC,b)
-                    board[redR][redC]='.'
-                    board[tredR][tredC]='R'
+                    b[redR][redC]='.'
+                    b[tredR][tredC]='R'
                     if tredR==goleR and tredC==goleC:
-                        board[tredR][tredC]='O'
+                        b[tredR][tredC]='O'
                     tblueR,tblueC=moveball(addr,addc,blueR,blueC,b)
-                    board[blueR][blueC]='.'
-                    board[tblueR][tblueC]='B'
+                    b[blueR][blueC]='.'
+                    b[tblueR][tblueC]='B'
                     if tblueR==goleR and tblueC==goleC:
-                        board[tblueR][tblueC]='O'
+                        b[tblueR][tblueC]='O'
                 else:
                     tblueR,tblueC=moveball(addr,addc,blueR,blueC,b)
-                    board[blueR][blueC]='.'
-                    board[tblueR][tblueC]='B'
+                    b[blueR][blueC]='.'
+                    b[tblueR][tblueC]='B'
                     if tblueR==goleR and tblueC==goleC:
-                        board[tblueR][tblueC]='O'
+                        b[tblueR][tblueC]='O'
                     tredR,tredC=moveball(addr,addc,redR,redC,b)
-                    board[redR][redC]='.'
-                    board[tredR][tredC]='R'
+                    b[redR][redC]='.'
+                    b[tredR][tredC]='R'
                     if tredR==goleR and tredC==goleC:
-                        board[tredR][tredC]='O'
+                        b[tredR][tredC]='O'
             if (addr,addc)==(0,-1):
                 if redC<blueC:
                     tredR,tredC=moveball(addr,addc,redR,redC,b)
-                    board[redR][redC]='.'
-                    board[tredR][tredC]='R'
+                    b[redR][redC]='.'
+                    b[tredR][tredC]='R'
                     if tredR==goleR and tredC==goleC:
-                        board[tredR][tredC]='O'
+                        b[tredR][tredC]='O'
                     tblueR,tblueC=moveball(addr,addc,blueR,blueC,b)
-                    board[blueR][blueC]='.'
-                    board[tblueR][tblueC]='B'
+                    b[blueR][blueC]='.'
+                    b[tblueR][tblueC]='B'
                     if tblueR==goleR and tblueC==goleC:
-                        board[tblueR][tblueC]='O'
+                        b[tblueR][tblueC]='O'
                 else:
                     tblueR,tblueC=moveball(addr,addc,blueR,blueC,b)
-                    board[blueR][blueC]='.'
-                    board[tblueR][tblueC]='B'
+                    b[blueR][blueC]='.'
+                    b[tblueR][tblueC]='B'
                     if tblueR==goleR and tblueC==goleC:
-                        board[tblueR][tblueC]='O'
+                        b[tblueR][tblueC]='O'
                     tredR,tredC=moveball(addr,addc,redR,redC,b)
-                    board[redR][redC]='.'
-                    board[tredR][tredC]='R'
+                    b[redR][redC]='.'
+                    b[tredR][tredC]='R'
                     if tredR==goleR and tredC==goleC:
-                        board[tredR][tredC]='O'
+                        b[tredR][tredC]='O'
             if (addr,addc)==(-1,0):
                 if redR<blueR:
                     tredR,tredC=moveball(addr,addc,redR,redC,b)
-                    board[redR][redC]='.'
-                    board[tredR][tredC]='R'
+                    b[redR][redC]='.'
+                    b[tredR][tredC]='R'
                     if tredR==goleR and tredC==goleC:
-                        board[tredR][tredC]='O'
+                        b[tredR][tredC]='O'
                     tblueR,tblueC=moveball(addr,addc,blueR,blueC,b)
-                    board[blueR][blueC]='.'
-                    board[tblueR][tblueC]='B'
+                    b[blueR][blueC]='.'
+                    b[tblueR][tblueC]='B'
                     if tblueR==goleR and tblueC==goleC:
-                        board[tblueR][tblueC]='O'
+                        b[tblueR][tblueC]='O'
                 else:
                     tblueR,tblueC=moveball(addr,addc,blueR,blueC,b)
-                    board[blueR][blueC]='.'
-                    board[tblueR][tblueC]='B'
+                    b[blueR][blueC]='.'
+                    b[tblueR][tblueC]='B'
                     if tblueR==goleR and tblueC==goleC:
-                        board[tblueR][tblueC]='O'
+                        b[tblueR][tblueC]='O'
                     tredR,tredC=moveball(addr,addc,redR,redC,b)
-                    board[redR][redC]='.'
-                    board[tredR][tredC]='R'
+                    b[redR][redC]='.'
+                    b[tredR][tredC]='R'
                     if tredR==goleR and tredC==goleC:
-                        board[tredR][tredC]='O'
+                        b[tredR][tredC]='O'
             boardcopy=copy.deepcopy(b)
+            b[tredR][tredC]=".";b[tblueR][tblueC]=".";b[blueR][blueC]="B";b[redR][redC]="R";b[goleR][goleC]="O"
             # print(depth,tredR,tredC,tblueR,tblueC)
-            b[blueR][blueC]="R";b[redR][redC]="R";b[tredR][tredC]=".";b[tblueR][tblueC]=".";b[goleR][goleC]="O"
             if (tblueR==goleR and tblueC==goleC) or depth==10:
                 continue
             if tredR==goleR and tredC==goleC:
