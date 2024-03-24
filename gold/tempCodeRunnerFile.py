@@ -1,23 +1,5 @@
-import sys
-input=sys.stdin.readline
-
-N=int(input().rstrip())
-
-goods=list(map(int,input().rstrip().split(' ')))
-goods=sorted(goods)
-answer=0
-for i in range(len(goods)-1,-1,-1):
-    # print(i)
-    target=goods[i]
-    left=0; right=i-1
-    while left<right:
-        # print(target,goods[left],goods[right])
-        if target>goods[left]+goods[right]:
-            left+=1
-        elif target<goods[left]+goods[right]:
-            right-=1
-        else:
-            answer+=1
-            break
-
-print(answer)
+    while graph[item][2]:
+                    target=graph[item][2].pop()
+                    prevnum[target]-=1
+                    dq.append((target,graph[item][1]))
+                        # check.add(target)
