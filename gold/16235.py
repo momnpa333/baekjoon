@@ -23,6 +23,8 @@
 #  각 칸에 추가되는 양분의 양은 A[r][c]이고, 입력으로 주어진다.
 import heapq
 import copy
+import sys
+input=sys.stdin.readline
 from collections import deque
 
 
@@ -60,7 +62,11 @@ def summer(deadtrees):
 
 def autum(trees):
     # print(trees)
-    for age,R,C in trees:
+    # for i in range(len(trees)-1,-1,-1):
+    #     age,R,C=trees[i],trees[i+1
+    for age,R,C in list(trees)[::-1]:
+        if age<5:
+            break
         if age%5==0:
             for addr,addc in ((-1,-1), (-1, 0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)):
                 newR=R+addr; newC=C+addc
@@ -76,10 +82,10 @@ def winter():
 for _ in range(K):
     deadtrees=[]
     newtrees,deadtrees=spring(newtrees)
-    summer(deadtrees)
+    for age,R,C in deadtrees:
+        board[R][C]+=age//2
+
     newtrees=autum(newtrees)
     winter()
-    print(board,newtrees)
+    # print(board,newtrees)
 print(len(newtrees))
-
-

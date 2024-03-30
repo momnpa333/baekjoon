@@ -51,6 +51,11 @@ def sadari(N,target):
                             check.add(newitems)
     return cnt
 
+# def sadari(N,target):
+#     items=[i+1 for i in range(N)]
+#     for i in range(N):
+#         if items[i] 
+
 for _ in range(T):
     N=int(input().rstrip())
     items=list(map(int,input().rstrip().split(' ')))
