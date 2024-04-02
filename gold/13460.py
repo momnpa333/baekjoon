@@ -136,11 +136,11 @@ while dq:
             if (tblueR==goleR and tblueC==goleC) or depth==10:
                 continue
             if tredR==goleR and tredC==goleC:
-                print(1)
+                print(depth+1)
                 exit(0)
             if (tredR,tredC,tblueR,tblueC) not in check:
                 dq.append([depth+1,tredR,tredC,tblueR,tblueC,boardcopy])
         if depth==10:
-            print(0)
+            print(-1)
             exit(0)
-print(0)
+print(-1)
