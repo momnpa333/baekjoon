@@ -28,3 +28,4 @@ def solve(N,K):
 
 # print(bottle_type)
 print(solve(N,K))
+# test
