@@ -1,57 +1,31 @@
-import sys
-input = sys.stdin.readline
+    
 
-numAryP=int(input())
-numAryM=numAryP
-cnt=0
+N=int(input())
 M=int(input())
-broken=set()
-if M!=0:
-    broken=set(map(int,input().split()))
+brokenSet=set(map(str,input().split()))
+answer1=float('inf');answer2=float('inf');count=0
 
-def isPosi(num):
-    listA=list(map(int,str(num)))
-    for i in listA:
-        if i in broken:
+def isPossible(N):
+    for s in str(N):
+        if s in brokenSet:
             return False
-    else:
-        return True
-
-
+    return True
+up=N;down=N
+while down>-1:
+    if down==100:
+        answer1=count
+        break
+    if isPossible(down):
+        answer1=min(abs(100-down)+count,len(str(down))+count)
+        break
+    down-=1;count+=1
+count=0
 while True:
-    if numAryP==100 or numAryM==100:
-        print(cnt-1)
-        exit(0)
-    if isPosi(numAryP)==True:
-        t=cnt+len(list(map(int,str(numAryP))))
-        if t<abs(numAryP-100):
-            print(t)
-        else:
-            print(abs(numAryP-100))
-        exit(0)
-    if 0<=numAryM and isPosi(numAryM)==True:
-        t=cnt+len(list(map(int,str(numAryM))))
-        if t<abs(numAryM-100):
-            print(t)
-        else:
-            print(abs(numAryM-100))
-        exit(0)
-    numAryP+=1
-    numAryM-=1
-    cnt+=1
-
-
-
-
-
-    
-    
-
-
-
-    
-
-
-
-
-
+    if up==100:
+        answer2=count
+        break
+    if isPossible(up):
+        answer2=min(abs(100-up)+count,len(str(up))+count)
+        break
+    up+=1;count+=1
+print(min(answer1,answer2))
