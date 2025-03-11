@@ -1,43 +1,41 @@
+import heapq
 import sys
+sys.setrecursionlimit(10**7)
 input=sys.stdin.readline
-
 V,E=map(int,input().split())
 
-edges=[list(map(int,input().split())) for i in range(E)]
+parent=[i for i in range(V+1)]
+graph=[[] for _ in range(V+1)]
+pq=[]
 
-parents=[i for i in range(V+1)]
+for _ in range(E):
+    A,B,value=map(int,input().split())
+    heapq.heappush(pq,(value,A,B))
+    graph[A].append((B,value)); graph[B].append((A,value))
 
-answer=0
-def find(parent):
-    if parents[parent]==parent:
-        return parent
+def findParent(node):
+    if node==parent[node]:
+        return node
+    parent[node]=findParent(parent[node])
+    return parent[node]
+
+
+def unionFind(a,b):
+    A=findParent(a); B=findParent(b)
+    if A<B:
+        parent[B]=A
     else:
-        return(find(parents[parent]))
+        parent[A]=B
 
-def update(parent,edit):
-    if parents[parent]==parent:
-        parents[parent] = edit
-        return parent
-    else:
-        tmp=parents[parent]
-        parents[parent] = edit
-        return(update(tmp,edit))
+edgeNum=0; totalLength=0
+while True:
+    if edgeNum==V-1:
+        break
+    value,A,B=heapq.heappop(pq)
 
+    if findParent(A)!=findParent(B):
+        unionFind(A,B)
+        edgeNum+=1; totalLength+=value
+print(totalLength)
+        
 
-def is_connected(a,b):
-    a_find=find(a)
-    b_find=find(b)
-    if a_find==b_find:
-        return True
-    else:
-        if a_find<b_find:
-            update(b,a_find)
-        else:
-            update(a,b_find)
-        return False
-edges=sorted(edges, key=lambda x:x[2])
-for edge in edges:
-    if (is_connected(edge[0],edge[1])==False):
-        answer+=edge[2]
-
-print(answer)
