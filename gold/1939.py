@@ -1,6 +1,6 @@
 import sys
 input=sys.stdin.readline
-from collections import deque
+import heapq
 N,M=map(int,input().split())
 graph=[[]for _ in range(N+1)] 
 value=[0]*(N+1)
@@ -9,15 +9,19 @@ for _ in range(M):
     graph[S].append((V,E));graph[E].append((V,S))
 F1,F2=map(int,input().split())
 
-dq=deque([])
-dq.append((float('inf'),F1))
-check=[True]*(N+1)
-while dq:
-    for _ in range(len(dq)):
-        g,edge=dq.popleft()
-        for v,node in graph[edge]:
-            cur=min(g,v)
-            if value[node]<cur:
-                value[node]=cur
-                dq.append((cur,node))
+pq=[]
+heapq.heappush(pq,(-float('inf'),F1))
+check=[True]*(N+1);check[F1]=False; value[F1]=float('inf')
+while pq:
+    v,s=heapq.heappop(pq)
+    # print(v,s)
+    if value[s]>-v:
+        continue
+    for gram,node in graph[s]:
+        # print(-v,gram)
+        # print(min(-v,gram))
+        if value[node]<min(-v,gram):
+            value[node]=min(-v,gram)
+            heapq.heappush(pq,(-min(-v,gram),node))
+
 print(value[F2])
