@@ -21,71 +21,71 @@
 
 # # 겨울에는 S2D2가 땅을 돌아다니면서 땅에 양분을 추가한다.
 #  각 칸에 추가되는 양분의 양은 A[r][c]이고, 입력으로 주어진다.
-import heapq
-import copy
 import sys
-input=sys.stdin.readline
 from collections import deque
-
+input=sys.stdin.readline
 
 N,M,K=map(int,input().split(' '))
 
 origin=[list(map(int,input().split(" "))) for _ in range(N)]
 board=[[5]*N for _ in range(N)]
-newtrees=[]
-
+trees=[[deque([])for _ in range(N)] for _ in range(N)]
+tmp=[]
 for _ in range(M):
     R,C,age=map(int,input().split(' '))
-    newtrees.append((age,R-1,C-1))
+    tmp.append((age,R,C))
 
-# print(board)
-# print(trees)
-newtrees=sorted(newtrees)
-newtrees=deque(newtrees)
-def spring(trees):
-    newtrees=deque([])
-    deadtrees=[]
-    # print("!!!",trees)
-    while trees:
-        age,R,C=trees.popleft()
-        if board[R][C]>=age:
-            board[R][C]-=age
-            newtrees.append((age+1,R,C))
-        else:
-            deadtrees.append((age,R,C))
-    # print("!!",newtrees)
-    return newtrees,deadtrees
+tmp=sorted(tmp)
+for age,R,C in tmp:
+    trees[R-1][C-1].append(age)
 
-def summer(deadtrees):
-    for age,R,C in deadtrees:
-        board[R][C]+=age//2
+def spring():
+    global N
+    for r in range(N):
+        for c in range(N):
+            grow=[];dead=[]
+            for _ in range(len(trees[r][c])):
+                treeAge=trees[r][c].popleft()
+                if treeAge<=board[r][c]:
+                    trees[r][c].append(treeAge+1)
+                    board[r][c]-=treeAge
+                else:
+                    dead.append((r,c,treeAge//2))
+            else:
+                for r,c,value in dead:
+                    board[r][c]+=value
 
-def autum(trees):
-    # print(trees)
-    # for i in range(len(trees)-1,-1,-1):
-    #     age,R,C=trees[i],trees[i+1
-    for age,R,C in list(trees)[::-1]:
-        if age<5:
-            break
-        if age%5==0:
-            for addr,addc in ((-1,-1), (-1, 0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)):
-                newR=R+addr; newC=C+addc
-                if 0<=newR<len(board) and 0<=newC<len(board):
-                    trees.appendleft((1,newR,newC))
-    return trees
+def autumn():
+    tmp=[]
+    for r in range(N):
+        for c in range(N):
+            for treeAge in trees[r][c]:
+                if treeAge%5==0:
+                    for addr,addc in ((0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1),(-1,0),(-1,1)):
+                        R=r+addr; C=c+addc
+                        if 0<=R<N and 0<=C<N:
+                            tmp.append((R,C))
+    for r,c in tmp:
+        trees[r][c].appendleft(1)
 
 def winter():
-    for i in range(len(board)):
-        for j in range(len(board)):
-            board[i][j]+=origin[i][j]
-        
-for _ in range(K):
-    deadtrees=[]
-    newtrees,deadtrees=spring(newtrees)
-    for age,R,C in deadtrees:
-        board[R][C]+=age//2
+    for r in range(N):
+        for c in range(N):
+            board[r][c]+=origin[r][c]
 
-    newtrees=autum(newtrees)
+answer=0
+for i in range(1,K+1):
+    spring()
+    autumn()
     winter()
-    # print(board,newtrees)
-print(len(newtrees))
+else:
+    for r in range(N):
+        for c in range(N):
+            answer+=len(trees[r][c])
+print(answer)
+
+
+
+
+
+                
