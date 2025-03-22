@@ -4,17 +4,21 @@ input=sys.stdin.readline
 N=int(input())
 numAry=list(map(int,input().split()))
 M=int(input())
-cmd=[]
+dp=[[True]*(N)for _ in range(N)]
 
-def fellindrom(start,finish):
-    while start<=finish:
-        if numAry[start]==numAry[finish]:
-            start+=1
-            finish-=1
+for gap in range(1,N):
+    for S in range(N-gap):
+        E=S+gap
+        if dp[S+1][E-1]==True and numAry[E]==numAry[S]:
+            dp[S][E]=True 
         else:
-            return 0
-    return 1
+            dp[S][E]=False
+print(dp)
+
 
 for i in range(M):
     a,b=map(int,input().split())
-    print(fellindrom(a-1,b-1))
+    if dp[a-1][b-1]==True:
+        print(1)
+    else:
+        print(0)
