@@ -2,7 +2,9 @@
 
 N=int(input())
 M=int(input())
-brokenSet=set(map(str,input().split()))
+brokenSet=set()
+if M>0:
+    brokenSet=set(map(str,input().split()))
 answer1=float('inf');answer2=float('inf');count=0
 
 def isPossible(N):
@@ -20,7 +22,7 @@ while down>-1:
         break
     down-=1;count+=1
 count=0
-while True:
+while up<1000001:
     if up==100:
         answer2=count
         break

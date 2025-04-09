@@ -17,21 +17,9 @@ for _ in range(TC):
         for t,s,e in edges:
             if dist[s]!=float('inf') and dist[s]+t<dist[e]:
                 dist[e]=dist[s]+t
-    print(dist)
     answer="NO"
     for t,s,e in edges:
         if dist[s]!=float('inf') and dist[s]+t<dist[e]:
             answer="YES"
             break
-    print(dist)
     print(answer)
-    
-
-    
-
-    
-
-    
-            
-
-    

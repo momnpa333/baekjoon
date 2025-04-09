@@ -9,7 +9,6 @@ H=ceil(log(N,2))
 seg_tree=[[0,0]]+[[0,0] for _ in range(2**(H+1)-1)]
 
 def make_tree(left,right,idx):
-    print(left,right,idx)
     if left==right:
         seg_tree[idx]=[nums[left],nums[left]]
         return seg_tree[idx]

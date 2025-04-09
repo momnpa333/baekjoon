@@ -13,7 +13,6 @@ for gap in range(1,N):
             dp[S][E]=True 
         else:
             dp[S][E]=False
-print(dp)
 
 
 for i in range(M):

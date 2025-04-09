@@ -36,5 +36,4 @@ if answer>K:
     print("Oh no")
 else:
     print(answer)
-print(parent)
 

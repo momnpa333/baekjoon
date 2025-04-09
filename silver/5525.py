@@ -27,4 +27,3 @@ else:
 for ans in answer:
     solve+=max(0,ans-N+1)
 print(solve)
-print(answer)

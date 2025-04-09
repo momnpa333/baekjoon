@@ -1,3 +1,6 @@
+import sys
+input=sys.stdin.readline
+
 N=int(input())  
 
 cost=[[0,0,0]]+[list(map(int,input().split())) for _ in range(N)]

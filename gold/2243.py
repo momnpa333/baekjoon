@@ -1,7 +1,7 @@
 import sys
 from math import ceil,log
 input = sys.stdin.readline
-L=5
+L=1000000
 nums=[0]*(L+1)
 # nums=[0]+[i for i in range(1,L+1)]
 H=ceil(log(L,2))
@@ -18,7 +18,6 @@ def make_tree(left,right,idx):
 
 def update_tree(left,right,idx,dif,target):
     seg_tree[idx]+=dif
-    print(left,right,target)
     if left==right:
         return
     mid=(left+right)//2

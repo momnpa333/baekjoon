@@ -17,9 +17,9 @@ def find_parent(A):
 def union_find(A,B):
     parentA=find_parent(A); parentB=find_parent(B)
     if parentA<parentB:
-        parent[B]=parentA
+        parent[parentB]=parentA
     else:
-        parent[A]=parentB
+        parent[parentA]=parentB
 
 for _ in range(M):
     A,B=map(int,input().split())

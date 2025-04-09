@@ -11,7 +11,6 @@ pq=[]; dist[S]=0
 heapq.heappush(pq,(0,S))
 
 while pq:
-    print(pq)
     D,cur=heapq.heappop(pq)
     if check[cur]==False:
         check[cur]=True

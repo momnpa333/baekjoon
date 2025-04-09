@@ -16,4 +16,4 @@ def binary_search(left,right,total):
         answer.append(mid)
         binary_search(mid+1,right,total)
 binary_search(0,right,total)
-print(answer)
+print(max(answer))
