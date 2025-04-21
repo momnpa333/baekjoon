@@ -6,7 +6,7 @@ def make_dict():
     num_dict[0]=0
     num_dict[1]=45
 
-    for n in range(2,10):
+    for n in range(2,16):
         num_dict[n]=sum_nine(n,num_dict)
     return num_dict
 
