@@ -1,9 +1,7 @@
-import math
+N=int(input())
 
-A,B=map(int,input().split())
+dp=[0]*(N+1); dp[1]=1; dp[0]=1
 
-D=math.gcd(A,B)
-
-a=A//D; b=B//D
-print(D)
-print(a*b*D)
+for i in range(2,N+1):
+    dp[i]=(dp[i-1]+2*dp[i-2])%10007
+print(dp[N])
