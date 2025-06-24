@@ -1,7 +1,12 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Collections;
+import java.util.PriorityQueue;
 
-public class Main {
+public class _1655 {
     static int N;
     static PriorityQueue<Integer> maxHeap;
     static PriorityQueue<Integer> minHeap;
@@ -29,13 +34,5 @@ public class Main {
         }
 
     }
-}
 
-//7,1, 5, 2, 10, -99, 7, 5
-// 7
-// 7    1
-// 7 5  1
-// 2 1  5 10
-// 2 1 -99 / 5 10
-// 2 1 -99 / 5 7 10
-// 5 2 1 - 99/ 5 7 10
+}

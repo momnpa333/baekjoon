@@ -29,5 +29,3 @@ for i in range(1,N+1):
     print(find_cost(i))
 
 # print(answer)
-
-
