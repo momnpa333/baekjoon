@@ -32,7 +32,6 @@ public class _13913 {
         A:
         while(!dq.isEmpty()){
             int L=dq.size();
-//            System.out.println(dq);
             for(int i=0;i<L;i++){
                 int[] item=dq.pollLast();
 
@@ -52,13 +51,10 @@ public class _13913 {
 
             }
         }
-//        System.out.println(K);
-//        System.out.println(Arrays.toString(visited));
         ArrayDeque<Integer> hist=new ArrayDeque<>();
         int cur=K;
         bw.write(cnt+"\n");
         while(true){
-//            System.out.println(cur);
             hist.addFirst(cur);
             if(cur==N){
                 break;
@@ -68,9 +64,6 @@ public class _13913 {
         for(int i:hist){
             bw.write(i+" ");
         }
-
-//        System.out.println("!!");
-//        System.out.println(cnt);
 
         bw.flush();
     }
