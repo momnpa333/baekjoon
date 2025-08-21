@@ -42,30 +42,6 @@ public class Main {
             }
         }
         ret=Math.max(ret,cnt);
-        cnt=0;
-        for(int i=0;i<K;i++){
-            if(stars[i][0]>=x-L && stars[i][0]<=x && stars[i][1]>=y && stars[i][1]<=y+L){
-                cnt++;
-            }
-        }
-
-        ret=Math.max(ret,cnt);
-        cnt=0;
-        for(int i=0;i<K;i++){
-            if(stars[i][0]>=x && stars[i][0]<=x+L && stars[i][1]>=y-L && stars[i][1]<=y){
-                cnt++;
-            }
-        }
-
-        ret=Math.max(ret,cnt);
-        cnt=0;
-        for(int i=0;i<K;i++){
-            if(stars[i][0]>=x-L && stars[i][0]<=x && stars[i][1]>=y-L && stars[i][1]<=y){
-                cnt++;
-            }
-        }
-
-        ret=Math.max(ret,cnt);
         return ret;
     }
 }
