@@ -5,7 +5,7 @@ public class Main {
     static int N;
     static int[] seq;
     static long[] preSum;
-    static long[][][] dp;
+    static long[][] dp;
     static double tar;
 
     public static void main(String[] args) throws IOException {
@@ -16,7 +16,7 @@ public class Main {
         N=Integer.parseInt(st.nextToken());
         preSum=new long[N+1];
         seq=new int[N];
-        dp=new long[5][N+1][N+1];
+        dp=new long[5][N+1];
 
         st=new StringTokenizer(br.readLine()," ");
         for(int i=0;i<N;i++){
@@ -33,11 +33,11 @@ public class Main {
             return 0;
         }
 //        System.out.printf("%d %d %d\n",start,end,num);
-        if(dp[num][start][end]!=0){
-            return dp[num][start][end];
+        if(dp[num][start]!=0){
+            return dp[num][start];
         }
         if(num==1){
-            dp[num][start][end]=1;
+            dp[num][start]=1;
             return 1;
         }
         long ret=0;
@@ -46,6 +46,7 @@ public class Main {
                 ret+=solve(start,i,1)*solve(i+1,end,num-1);
             }
         }
+        dp[num][start]=ret;
         return ret;
     }
 
