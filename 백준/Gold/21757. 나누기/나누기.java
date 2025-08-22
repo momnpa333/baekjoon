@@ -5,49 +5,44 @@ public class Main {
     static int N;
     static int[] seq;
     static long[] preSum;
-    static long[][] dp;
-    static double tar;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        N=Integer.parseInt(st.nextToken());
-        preSum=new long[N+1];
-        seq=new int[N];
-        dp=new long[5][N+1];
+        N = Integer.parseInt(st.nextToken());
+        preSum = new long[N + 1];
+        seq = new int[N];
 
-        st=new StringTokenizer(br.readLine()," ");
-        for(int i=0;i<N;i++){
-            seq[i]=Integer.parseInt(st.nextToken());
-            preSum[i+1]=preSum[i]+seq[i];
+        st = new StringTokenizer(br.readLine(), " ");
+        for (int i = 0; i < N; i++) {
+            seq[i] = Integer.parseInt(st.nextToken());
+            preSum[i + 1] = preSum[i] + seq[i];
         }
-        tar= (double) preSum[N] /4;
 
-//        System.out.println(Arrays.toString(preSum));
-        System.out.println(solve(1,N,4));
+        long S = preSum[N];
+        if (S % 4 != 0) {
+            System.out.println(0);
+            return;
+        }
+
+        long q = S / 4;       // S/4
+        long h = S / 2;       // S/2
+        long tq = 3 * q;      // 3S/4
+
+        long cnt3 = 0;  // prefix == 3S/4 (k 후보 수)
+        long cnt2 = 0;  // prefix == S/2 에서 만들 수 있는 (j,k) 쌍 수
+        long ans  = 0;  // 정답
+
+        // 마지막 구간이 비면 안 되므로 1..N-1만 사용
+        for (int i = N - 1; i >= 1; i--) {
+            // 순서 중요: ans -> cnt2 -> cnt3
+            if (preSum[i] == q)  ans  += cnt2; // i는 j,k보다 앞서야 함
+            if (preSum[i] == h)  cnt2 += cnt3; // j는 k보다 앞서야 함
+            if (preSum[i] == tq) cnt3++;       // k 후보 추가
+        }
+
+        System.out.println(ans);
     }
-    static long solve(int start,int end,int num){
-        if(start>end){
-            return 0;
-        }
-//        System.out.printf("%d %d %d\n",start,end,num);
-        if(dp[num][start]!=0){
-            return dp[num][start];
-        }
-        if(num==1){
-            dp[num][start]=1;
-            return 1;
-        }
-        long ret=0;
-        for(int i=start;i<=end;i++){
-            if(preSum[i]-preSum[start-1]==tar){
-                ret+=solve(start,i,1)*solve(i+1,end,num-1);
-            }
-        }
-        dp[num][start]=ret;
-        return ret;
-    }
-
 }
