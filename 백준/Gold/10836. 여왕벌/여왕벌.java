@@ -24,7 +24,8 @@ public class Main {
             int twoStart=Integer.parseInt(st.nextToken());
             int trash=Integer.parseInt(st.nextToken());
 
-            growthSum[oneStart]+=1;
+            if(oneStart<2*M-1)
+                growthSum[oneStart]+=1;
             if((twoStart+oneStart)<2*M-1)
                 growthSum[twoStart+oneStart]+=1;
         }
@@ -38,9 +39,8 @@ public class Main {
                 bw.write(board[i][j]+" ");
             }
             bw.write("\n");
-            bw.flush();
         }
-
+        bw.flush();
     }
     static void makeBoard(){
         int idx=0;
