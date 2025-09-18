@@ -73,7 +73,7 @@ public class Main {
         return -1;
     }
     static Long getCode(int curA,int curB){
-        return curA*100000L+curB;
+        return curA*100001L+curB;
     }
     static class Item{
         int curA,curB;
