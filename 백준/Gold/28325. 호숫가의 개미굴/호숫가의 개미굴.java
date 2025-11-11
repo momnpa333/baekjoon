@@ -4,19 +4,19 @@ import java.util.*;
 public class Main {
     static int N;
     static boolean[][] dp;
-    static int[] board;
-    static int ans1;
-    static int ans2;
+    static long[] board;
+    static long ans1;
+    static long ans2;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         N=Integer.parseInt(st.nextToken());
 
         dp=new boolean[2][N+1];
-        board=new int[N+1];
+        board=new long[N+1];
         st=new StringTokenizer(br.readLine()," ");
         for(int i=1;i<=N;i++){
-            board[i]=Integer.parseInt(st.nextToken());
+            board[i]=Long.parseLong(st.nextToken());
         }
 
         dp[0][0]=true;
