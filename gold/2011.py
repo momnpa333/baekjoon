@@ -21,4 +21,4 @@ for idx,s in enumerate(zip(st,st[1:])):
         print(0)
         exit(0)
 
-print(dp[-1])
+print(dp[-1]%1000000)
