@@ -146,7 +146,7 @@ public class Main {
         for(int i=0;i<R;i++){
             for(int j=0;j<C;j++){
                 boolean isTarget = (matrix[i][j] & TARGETCODE) != 0;
-                boolean hasBox   = (matrix[i][j] & BOXCODE) != 0;
+                boolean hasBox = (matrix[i][j] & BOXCODE) != 0;
                 if(isTarget && !hasBox) return false;
             }
         }
