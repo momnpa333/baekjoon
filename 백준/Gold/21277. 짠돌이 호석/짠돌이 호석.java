@@ -44,8 +44,6 @@ public class Main {
             }
 //            System.out.println(Arrays.toString(mat2[i]));
         }
-        turnLeft(mat2);
-
         int ans=Integer.MAX_VALUE;
 
         for(int t=0;t<4;t++){
@@ -55,6 +53,11 @@ public class Main {
                 for(int r=0;r<=mat1.length;r++){
                     for(int c=0;c<=mat1[0].length;c++){
                         ans=Math.min(ans, overLap(mat1,mat2,r,c));
+                    }
+                }
+                for(int r=0;r<=mat2.length;r++){
+                    for(int c=0;c<=mat2[0].length;c++){
+                        ans=Math.min(ans, overLap(mat2,mat1,r,c));
                     }
                 }
             }
