@@ -52,8 +52,8 @@ public class Main {
             mat1=turnLeft(mat1);
             for(int i=0;i<4;i++){
                 mat2=turnLeft(mat2);
-                for(int r=0;r<N1;r++){
-                    for(int c=0;c<M1;c++){
+                for(int r=0;r<=mat1.length;r++){
+                    for(int c=0;c<=mat1[0].length;c++){
                         ans=Math.min(ans, overLap(mat1,mat2,r,c));
                     }
                 }
