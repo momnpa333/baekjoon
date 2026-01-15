@@ -48,11 +48,14 @@ public class Main {
 
         int ans=Integer.MAX_VALUE;
 
-        for(int i=0;i<4;i++){
-            mat2=turnLeft(mat2);
-            for(int r=0;r<N1;r++){
-                for(int c=0;c<M1;c++){
-                    ans=Math.min(ans, overLap(mat1,mat2,r,c));
+        for(int t=0;t<4;t++){
+            mat1=turnLeft(mat1);
+            for(int i=0;i<4;i++){
+                mat2=turnLeft(mat2);
+                for(int r=0;r<N1;r++){
+                    for(int c=0;c<M1;c++){
+                        ans=Math.min(ans, overLap(mat1,mat2,r,c));
+                    }
                 }
             }
         }
@@ -79,7 +82,21 @@ public class Main {
                 }
             }
         }
-        return R*C;
+        int minR=Integer.MAX_VALUE;
+        int minC=Integer.MAX_VALUE;
+        int maxR=Integer.MIN_VALUE;
+        int maxC=Integer.MIN_VALUE;
+        for(int i=0;i<R;i++){
+            for(int j=0;j<C;j++){
+                if(newMat[i][j]){
+                    minR=Math.min(minR,i);
+                    minC=Math.min(minC,j);
+                    maxR=Math.max(maxR,i);
+                    maxC=Math.max(maxC,j);
+                }
+            }
+        }
+        return (maxR-minR+1)*(maxC-minC+1);
     }
     static boolean[][] turnLeft(boolean[][] mat){
         int N=mat.length;
