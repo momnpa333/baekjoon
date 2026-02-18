@@ -84,27 +84,6 @@ public class Main {
         }
         return true;
     }
-    static boolean checkAllConnected(){
-        ArrayDeque<Integer> dq=new ArrayDeque<>();
-        dq.add(1);
-        boolean[] visited=new boolean[N+1];
-        while(!dq.isEmpty()){
-            int L=dq.size();
-            for(int i=0;i<L;i++){
-                int item=dq.poll();
-                for(int next:graph[item]){
-                    if(!visited[next]){
-                        visited[next]=true;
-                        dq.add(next);
-                    }
-                }
-            }
-        }
-        for(int i=1;i<=N;i++){
-            if(!visited[i]) return false;
-        }
-        return true;
-    }
     static void checkConnected(boolean[] area,boolean[] isvisited,boolean op,int start){
         ArrayDeque<Integer> dq=new ArrayDeque<>();
         dq.add(start);
