@@ -4,8 +4,6 @@ import java.util.*;
 public class Main {
     static int N;
     static ArrayList<Integer>[] graph;
-    static boolean[] visited;
-    static int answer=1;
     static int leafCnt;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,7 +12,6 @@ public class Main {
         N=Integer.parseInt(st.nextToken());
 
         graph=new ArrayList[N];
-        visited=new boolean[N];
 
         for(int i=0;i<N;i++){
             graph[i]=new ArrayList<>();
@@ -41,28 +38,5 @@ public class Main {
         else{
             System.out.println(leafCnt/2+1);
         }
-    }
-    static void solve(int node){
-//        System.out.println(node+" "+answer);
-        visited[node]=true;
-        int cnt=0;
-        for(int next:graph[node]){
-            if(!visited[next]){
-                solve(next);
-                cnt++;
-                if(cnt>1){
-                    answer++;
-                }
-            }
-        }
-    }
-    static int findLeaf(int node){
-        visited[node]=true;
-        for(int next:graph[node]){
-            if(!visited[next]){
-                return findLeaf(next);
-            }
-        }
-        return node;
     }
 }
